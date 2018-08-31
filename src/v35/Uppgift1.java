@@ -12,8 +12,8 @@ public class Uppgift1 {
 		
 		int sum = 0;
 		
-		for (int integ : ints) {
-			sum += integ;
+		for (int n : ints) {
+			sum += n;
 		}
 		
 		return sum;
