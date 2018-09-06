@@ -24,18 +24,73 @@ public class KattisSafe {
 			}
 		}
 
-		press(grid, 1, 1, 1);
+		// Calculates the answer
+		Integer result = min(grid, 0);
 
-		isSolved(grid);
-		
-		for (int x = 0; x < SIZE ; x++) {
-			for (int y = 0; y < SIZE; y++) {
-				System.out.print(grid[x][y]);
-			}
-			System.out.println("");
-		}
+		//If you can't crack it it out puts -1
+		if (result == null)
+			System.out.println(-1);
+		//Else output answer
+		else
+			System.out.println(result);
+
 
 	}
+	/**
+	 * Calculates the minimum number
+	 * of presses for cracking the safe
+	 * 
+	 * @param grid The grid
+	 * @param position The starting position
+	 * @return
+	 */
+	private static Integer min(int[][] grid, int position) {
+
+		//Base case
+		if (position == Math.pow(SIZE, 2)) {
+			if (isSolved(grid))
+				return 0;
+			else
+				return null;
+		}
+
+		// Calculates row and column
+		int row = position / SIZE;
+		int col = position % SIZE;
+
+		//I choose to use Integer instead of int because it can handle a NULL value
+		Integer minimum = null;
+
+		//For 1 thru 4 do...
+		for (int numberOfPresses = 0; numberOfPresses < RANGE; numberOfPresses++) {
+
+			//Press the grid at the coordinate
+			press(grid, row, col, numberOfPresses);
+
+
+			Integer result = min(grid, position + 1);
+
+			//If the grid is solvable then...
+			if (result != null) {
+
+				//Add the number of presses to the result
+				result += numberOfPresses;
+				
+				//Check to break out of the recursion
+				if (minimum == null || result < minimum)
+					minimum = result;
+				
+			}
+			
+			//Re-do the grid
+			press(grid, row, col, -numberOfPresses);
+		}
+
+		//Return the minimum number of presses
+		return minimum;
+
+	}
+
 	/**
 	 * This method presses the buttons
 	 * accord to the rules in the assignment
@@ -73,11 +128,11 @@ public class KattisSafe {
 		//Checks the entire grid
 		for (int x = 0; x < SIZE ; x++) {
 			for (int y = 0; y < SIZE; y++) {
-				
+
 				//If a coordinate is not 0 then it returns false
 				if (grid[x][y] != 0)
 					return false;
-				
+
 			}
 		}
 
