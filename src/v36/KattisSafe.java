@@ -75,13 +75,13 @@ public class KattisSafe {
 
 				//Add the number of presses to the result
 				result += numberOfPresses;
-				
+
 				//Check to break out of the recursion
 				if (minimum == null || result < minimum)
 					minimum = result;
-				
+
 			}
-			
+
 			//Re-do the grid
 			press(grid, row, col, -numberOfPresses);
 		}
@@ -142,14 +142,3 @@ public class KattisSafe {
 	}
 
 }
-
-
-/*
-
-for (int x = 0; x < SIZE ; x++) {
-for (int y = 0; y < SIZE; y++) {
-
-}
-}
-
- */
