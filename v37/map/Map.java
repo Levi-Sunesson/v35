@@ -1,7 +1,6 @@
 package map;
 
 import java.util.ArrayList;
-
 import blocks.Block;
 import javafx.scene.Group;
 
