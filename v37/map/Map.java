@@ -36,10 +36,14 @@ public class Map extends Group {
 	}
 
 	public Block getBlock(int x, int y) {
-		if (y > map.size()) {
-			return null;
-		}
-		if (x > map.get(y).size()) {
+		try {
+			if (y > map.size() || y < 0) {
+				return null;
+			}
+			if (x > map.get(y).size() || x < 0) {
+				return null;
+			}
+		} catch (Exception e) {
 			return null;
 		}
 

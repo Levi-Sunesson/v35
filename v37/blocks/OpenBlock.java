@@ -11,4 +11,13 @@ public class OpenBlock extends Block {
 		this.getChildren().add(r);
 	}
 
+	
+	public void visit() {
+		
+		Rectangle r = (Rectangle) this.getChildren().get(0);
+		
+		r.setFill(Color.LIGHTGRAY);
+		
+	}
+	
 }

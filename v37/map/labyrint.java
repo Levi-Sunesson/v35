@@ -1,6 +1,7 @@
 package map;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import blocks.Block;
 import javafx.animation.AnimationTimer;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 
 public class labyrint extends Application {
 
+	int count = 0;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -18,19 +21,25 @@ public class labyrint extends Application {
 
 		Scene scene = new Scene(map, map.getWidth(), map.getHeight());
 
-		MapSolver solver = new MapSolver(map.getStartX(), map.getStartY());
-		
-		map.getChildren().add(solver);
+		MapSolver solver = new MapSolver(map.getStartX(), map.getStartY(), map);
 		
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 		
 		new AnimationTimer() {
 			
 			@Override
 			public void handle(long now) {
 				
-				solver.update();
+				if (count < solver.path.size()) {
+					map.getChildren().add(solver.path.get(count));
+					
+				}else {
+					System.out.println(solver.path.size());
+					this.stop();
+				}
+				count++;
 				
 			}
 			

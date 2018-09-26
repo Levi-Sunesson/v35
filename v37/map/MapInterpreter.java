@@ -3,15 +3,11 @@ package map;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
-import com.sun.org.apache.xpath.internal.compiler.OpCodes;
-
 import blocks.Block;
 import blocks.ClosedBlock;
 import blocks.GoalBlock;
 import blocks.OpenBlock;
 import blocks.StartBlock;
-import javafx.scene.paint.Color;
 
 public class MapInterpreter {
 
@@ -30,26 +26,45 @@ public class MapInterpreter {
 					Block b;
 
 					if (c == '*') {
+
 						b = new ClosedBlock();
+
 					} else if (c == 'S') {
+
 						b = new StartBlock();
+
 						map.setStartX(col);
 						map.setStartY(row);
+
 					} else if (c == 'G') {
+
 						b = new GoalBlock();
+
 					} else {
+
 						b = new OpenBlock();
+
 					}
+
 					b.setTranslateX(col * Block.SIZE);
 					b.setTranslateY(row * Block.SIZE);
+
 					map.add(b, row);
+
 				}
+
 				row++;
+
 			}
+
 			fileReader.close();
+
 			return map;
+
 		} catch (FileNotFoundException e) {
+
 			e.printStackTrace();
+
 			return null;
 		}
 
