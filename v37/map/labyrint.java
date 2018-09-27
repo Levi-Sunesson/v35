@@ -1,13 +1,9 @@
 package map;
 
 import java.io.File;
-import java.nio.file.Path;
-
-import blocks.Block;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class labyrint extends Application {
@@ -26,7 +22,6 @@ public class labyrint extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
-		
 		new AnimationTimer() {
 			
 			@Override
@@ -39,6 +34,7 @@ public class labyrint extends Application {
 					System.out.println(solver.path.size());
 					this.stop();
 				}
+				
 				count++;
 				
 			}
