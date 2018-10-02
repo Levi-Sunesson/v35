@@ -4,6 +4,8 @@ import java.io.File;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class labyrint extends Application {
@@ -22,16 +24,23 @@ public class labyrint extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		
-		new AnimationTimer() {
+		new AnimationTimer(){
 			
 			@Override
 			public void handle(long now) {
+
 				
 				if (count < solver.path.size()) {
 					map.getChildren().add(solver.path.get(count));
 					
 				}else {
+					
 					System.out.println(solver.path.size());
+					for (Circle c : solver.winPath) {
+						
+						map.getChildren().add(c);
+						
+					}
 					this.stop();
 				}
 				

@@ -16,15 +16,17 @@ public class NodeSolver {
 
 		this.map = map;
 
+		nodeFinder(this.map);
+		
 	}
 
-	private void nodeFinder() {
+	private void nodeFinder(Map map) {
 
 		Node n;
 
 	}
 
-	private void solve(int x, int y, int dir) {
+	private void solve() {
 
 	}
 }

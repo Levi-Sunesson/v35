@@ -17,6 +17,9 @@ public class MapSolver {
 	ArrayList<Block> visitedBlocks = new ArrayList<Block>();
 
 	ArrayList<Circle> path = new ArrayList<Circle>();
+	ArrayList<Circle> winPath = new ArrayList<Circle>();
+	
+	
 
 	MapSolver(int startX, int startY, Map map){
 
@@ -32,6 +35,8 @@ public class MapSolver {
 
 	private void solve(int x, int y, int dir) {
 
+		double circleSize = Block.SIZE/2;
+		
 		switch (dir) {
 		case 1:
 			x++;
@@ -61,6 +66,13 @@ public class MapSolver {
 		}
 
 		if (b instanceof GoalBlock) {
+			
+			path.add(
+					new Circle(
+							x*Block.SIZE+circleSize,
+							y*Block.SIZE+circleSize,
+							circleSize,
+							Color.MEDIUMAQUAMARINE));
 
 			win = true;																																										//levi
 			return;
@@ -69,7 +81,6 @@ public class MapSolver {
 
 		if (b instanceof ClosedBlock || b == null || win) return;
 
-		double circleSize = Block.SIZE/2;
 
 		path.add(
 				new Circle(
@@ -103,9 +114,15 @@ public class MapSolver {
 			break;
 		}
 
+		winPath.add(new Circle(
+				x*Block.SIZE+circleSize,
+				y*Block.SIZE+circleSize,
+				circleSize,
+				Color.ORANGE));
+		
 		if (!win) {
 
-			path.remove(path.size()-1);
+			winPath.remove(winPath.get(winPath.size()-1));
 
 		}
 
